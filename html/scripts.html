@@ -3,5 +3,15 @@
 <!--> you can tell the browser to never execute inline JavaScript,<-->
 <!--> and to lock down which domains can host JavaScript for a page<-->
 <!--> as e.g, we trust apis.google.com so we add it as bellow:<-->
-
 <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://apis.google.com">
+
+  
+<h1>Get away from inline scripting</h1>
+<!--> instead of writing the javascript code in the same html file <-->
+<!--> put your script in an external file,and use Eventhandling to <-->
+<!--> point to your class or id <-->
+<!-- example-->
+<script src='amazing.js'></script>
+<button id='amazing'>Am I amazing?</button>
+
+  

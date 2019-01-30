@@ -2,7 +2,28 @@ frappe_commands
 ---------------
 - To enable developer mode
 bench set-config develper_mode 1
+- To enable developer mode on a certain site
+bench --site site1.local set-config developer_mode 1
+OR
+update the site's site_config.json to be
+{
+'db_name':,
+'dbpassword':,
+'developer_mode':1,
+}
 
+
+
+=======================================
+**No database columns for the below**
+section breaks
+colmn breaks
+Buttons
+
+=======================================
+**get the current user**
+frappe.session.user
+=======================================
 - Auto Name
 When you create a new doctype, there is a form
 labeled as "Auto Name", put in this field "what eactly
@@ -15,7 +36,197 @@ Auto Name
 | doctor_name   |
 ----------------
 
+=======================================
+**access to site Database**
+`bench --site site1.local mysql`
 
+
+=======================================
+**desktop icon**
+Go to apps/meeting/meeting/config/desktop
+
+
+def get_date():
+	return [{
+		'module_name':'meeting',
+		'color':
+		'icon':
+=======================================
+- hooks.py
+defines the basic configuration of the app ana dhow tthe app connects to other apps in the system 
+the first configuration you did when you created the app using new-app command is lcated inside the hooks.py file
+app_name
+app_title
+app_publisher
+app_description
+app_icon
+app_color
+app_email
+app_license
+=======================================
+**python Doctype scripting**
+Every doctype has a class that inheret from the Base Document class
+
+`class Meeting(Document):`
+`	def __init__(self)`
+=======================================
+**server_side**
+**frappe.get_doc(Doctype, name)**
+retruns an object of the given name of the given Doctype
+as example:
+Imagine a doctype called `User` with the following fields
+- email = 'ahmed@asd.x'
+- first_name
+- middle_name
+- last_name
+
+to get the a user object from `User` doctype where this user is an email_address
+we do
+user = frappe.get_doc('User','ahmed@asd.x')
+
+Now the `user` variable is a User object, which points to a user raw of ahmed,
+we can look for `user.first_name`, `user.last_name`,`user.SOMEDOCFILED` of this user
+
+=======================================
+**client_side script**
+frappe.ui.form.on([DocType], {
+    [trigger]: function(frm) {
+        [function];
+    }
+});
+
+
+Trigger: what field triggers the function
+=======================================
+**client_side script**
+frappe.call({
+    method:"frappe.client.get_value",
+    args: {
+        doctype:"Delivery Note Item",
+        filters: {
+            parent:"DN00038",
+            item_code:"Ser/003"
+        },
+        fieldname:["qty", "stock_uom"]
+    }, 
+    callback: function(r) { 
+        console.log(r);
+
+        // set the returned value in a field
+        cur_frm.set_value(fieldname, r.message);
+    }
+})
+
+=======================================
+**Remember !!!**
+All configuraiton related to the modules
+that controls what is displayed in the desktop
+is stored in the config folder of that module
+/apps/appname/config
+
+=======================================
+**Add color status to indicators**
+**You can copy the same content as delivery_note_list.js in the erpnext**
+To make different color indicators in your doctype
+example:
+Planned, Invitation Sent, something else, bla bla bla
+
+1- Open your Doctype folder, ex: meeting/meeting/doctype/meeting/
+1- create a file called: **doctypename_list.js** in your doctype
+2- add the below to that file
+frappe.listview_setttings['Meeting'] = {
+	get_indicator: function(doc) {
+		return [__(doc.status), {
+			"Planned":"blue",
+			"Invitation Sent":"orange",
+			"something else":"green",
+			"bla bla bla":"red"
+		}[doc.status], "status,=," + doc.status];
+	}
+}
+
+
+
+
+=======================================
+**frappe.model.get_doc(Doctype, name)**
+
+
+frappe.ui.form.on("child doctype",{
+	attendee: function(frm, cdt, cdn) {
+		// define variable
+		var attendee = frappe.model.get_doc(cdt,cdn);
+			// call server side script
+			frm.call({
+				method: "appname.doctypename.doctype.doctypename.doctypename.whitelistedfunction"
+				args: {
+					attendee: attendee.attendee
+				},
+				callback: function(r) {
+					frappe.model.set_value(cdt,cdn,"full_name", r.message);			
+				}
+			});
+
+		}else {
+			frappe.model.set_value(cdt,cdn, "full_name", null);
+		}
+
+})
+
+======================================
+**sendmail**
+frappe has function for sending emails 
+`import frappe`
+`frappe.sendmail(
+	recipients=
+	sender=
+	subject=
+	message=
+	reference_doctype=
+	reference_name=
+	as_bulk=True
+)`IK@
+======================================
+**eval**
+If you have a certain button and you want this button to only be shown
+if the documnet status is planning, then on your doctype, select that
+button, then under the **Permission** section of the buton docfield setting
+under the **Display depends on** add the below in it below form
+`eval:doc.status==="Planning"`
+======================================
+**restrict API access**
+@frappe.whitelist()
+def x(
+	xxx.check_permission("email")
+======================================
+**validate method**
+`def validate(self)` method is a predefined Document object method
+used to do something before saving it to the database
+=======================================
+
+**NOTE: BOTH THE SERVER SIDE AND THE CLIENT SIDE SCRIPTING MUST BE DONE ON THE PARENT DOCTYPE NOT ON THE CHILD DOCTYPE**
+
+=======================================
+**frappe.call**
+sometimes inside the client side scripting we use ajax to query
+infomration from the server side, this is possible through the use `frappe.call` function in js file, and because ajax queries depends on API endpoints of the server, we have to make an Open End Point through the user of `@frappe.whitelist()` in the py file
+ 
+the frappe.call function should be written in the following format
+
+
+frappe.call({
+	method: "appname.doctypename.doctype.modulename.methodname",
+	args:{
+		<argument>: <value>
+	},
+	callback: function(r) {
+		<what you do if ajax success>
+	}
+})
+
+@frappe.whitelist()
+def methodname(self):
+=======================================
 - whenver you save a doctype, a "js", "json" and "py" files will be cretaed at the back end
 -- json file: contains all of the fields you see on the form
 * if you want to validate any functinoality you haev to write it on both the js file and the py file
@@ -38,11 +249,3 @@ class example(Document):
 	def on_update(self):
 ```
 on_update is recognized by frappe to make something after the data has been stored in the dataabsee
-As example, if you want to update the date of another doctype from the current doctype then use on_update
-method
-
-
--- fetch name automatically
-on your doctype, if you want to fetch a name of someone just by choosing his id, you need to create two fields
-field_1: someones_id    int
-filed_2: someone_name	readonly MASTER.someone_name

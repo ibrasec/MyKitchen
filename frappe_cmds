@@ -1,0 +1,48 @@
+frappe_commands
+---------------
+- To enable developer mode
+bench set-config develper_mode 1
+
+- Auto Name
+When you create a new doctype, there is a form
+labeled as "Auto Name", put in this field "what eactly
+you want to see when a new doctype has been created and you clicked
+on this Doctype, what you type her will be shown on the topleft
+corner
+ex:
+Auto Name
+----------------
+| doctor_name   |
+----------------
+
+
+- whenver you save a doctype, a "js", "json" and "py" files will be cretaed at the back end
+-- json file: contains all of the fields you see on the form
+* if you want to validate any functinoality you haev to write it on both the js file and the py file
+
+
+- adding validation to your doctype
+inside the <doctype>.py file, create a method for your doctype class called validate
+```
+class example(Document):
+	def validate(self):
+```
+validate method is recognized by frappe to make validation
+
+
+
+- Apply some function after Data saved to database
+inside the <doctype>.py file, create a method for your doctype class called on_update
+```
+class example(Document):
+	def on_update(self):
+```
+on_update is recognized by frappe to make something after the data has been stored in the dataabsee
+As example, if you want to update the date of another doctype from the current doctype then use on_update
+method
+
+
+-- fetch name automatically
+on your doctype, if you want to fetch a name of someone just by choosing his id, you need to create two fields
+field_1: someones_id    int
+filed_2: someone_name	readonly MASTER.someone_name

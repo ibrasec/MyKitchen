@@ -1,3 +1,9 @@
+# google dork
+
+site:example.com
+
+cache:example.com
+
 # find files permission for the current user
 
 `find / -perm -u=s -type f 2>/dev/null`

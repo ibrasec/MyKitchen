@@ -22,3 +22,10 @@ If you are a normal user with root privilage to any of these commands, you can h
 below
 https://netsec.ws/?p=337
 
+
+## Reverse shell
+
+Getting a Reverse shell through a vulnerability found in the victim machine
+
+http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+

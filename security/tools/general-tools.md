@@ -14,3 +14,11 @@ A simple code for Checking your local host system for available exploites
 CeWL is a ruby app which spiders a given URL to a specified depth, optionally following external links, and
 returns a list of words which can then be used for password crackers such as John the Ripper.
 https://github.com/digininja/CeWL
+
+
+## Spawn tty shell
+
+If you are a normal user with root privilage to any of these commands, you can have root privilage using the commands
+below
+https://netsec.ws/?p=337
+

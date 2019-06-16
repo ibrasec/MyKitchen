@@ -8,7 +8,7 @@ $ docker search redis
 ```
 
 ## Running a docker image
-To run a certain image, use the run flag, this will run the image and might get you inside of it, so that whatever you type in the terminal is going to only affect the running image. Note that adding the keyword **latest** is the default, where the image version to ran will be the latest.
+To run a certain image, use the run flag, this will run the image and might get you inside of it, so that whatever you type in the terminal is going to only affect the running image, (foreground process). Note that adding the keyword **latest** is the default, where the image version to ran will be the latest.
 
 --name option will assigne the container the name you choose
 ```
@@ -87,4 +87,21 @@ $ docker port <container-id>|<container-name>
 To find a certain port mapping 
 ```
 $ docker port <container-id>|<container-name> <port-name>
+```
+
+## Executing a command from outside of the container
+```
+$ docker run <image-name> <command-to-execute>
+
+example
+$ docker run ubuntu ps
+```
+
+## Getting a Bash shell of the container
+```
+$ docker run -it <image-name> bash
+
+example:
+$ docker run -it ubuntu bash
+root@b123ujs123:/#
 ```

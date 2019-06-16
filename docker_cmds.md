@@ -9,8 +9,10 @@ $ docker search redis
 
 ## Running a docker image
 To run a certain image, use the run flag, this will run the image and might get you inside of it, so that whatever you type in the terminal is going to only affect the running image. Note that adding the keyword **latest** is the default, where the image version to ran will be the latest.
+
+--name option will assigne the container the name you choose
 ```
-$ docker run <image-name>:latest
+$ docker run <image-name>:latest --name myImageName
 ```
 To run the image in the background, simply add the -d option, this is similar to passing the & charecter after executing a service.
 ```
@@ -55,6 +57,8 @@ $ docker logs determined_brattain
 
 ## Exposing particular port
 by default the port that is running on the container are not exposed and can't be reached, as example, if the container has an ssh service running on port 2222 any one who wants to connect to this port will fail to connect to it unless that port is exposed, to expose the container port use the -p option as follows:
+
+## Static port mapping
 ```
 $ docker run -d <image-name>:latest -p <system-port>:<container-port> 
 
@@ -68,6 +72,19 @@ $ docker run -d <image-name>:latest -p <system-ip-address>:<system-port>:<contai
 
 example
 $ docker run -d redis:latest -p 127.0.0.1:2002:2222 
+```
+### Dynamic port mapping
+To run the container on dynamic port instead of fixed port
+```
+$ docker run -d redis:latest -p 127.0.0.1:2002 --name DynamicPort 
+```
 
-
+## finding the Port mapping number running On a certain container
+To find all port mapping
+```
+$ docker port <container-id>|<container-name>
+```
+To find a certain port mapping 
+```
+$ docker port <container-id>|<container-name> <port-name>
 ```

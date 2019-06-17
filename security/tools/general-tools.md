@@ -1,3 +1,11 @@
+## OWASP Amass
+Tool used for DNS enumeration
+
+https://github.com/OWASP/Amass
+```
+sudo docker run amass enum -d example.com -ip -src -brute -include-unresolvable
+```
+
 ## OWASP Security khowledge Framework
 SKF is a fully open-source Python-Flask web-application that uses the OWASP Application Security Verification Standard to train you and your team in writing secure code, by design.
 

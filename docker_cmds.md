@@ -134,7 +134,7 @@ The build command executes each instruction within the Dockerfile.
 docker build <chosen-image-name> .
 ```
 
-by default the tag for the newly created image will be **latest**, if we want to specify the version we can use the **-t** or **--tag** option as follows
+By default the tag for the newly created image will be set **latest**, if we want to specify the version then we can use the **-t** or **--tag**, **NOTE: it is recommended to always set a tag for your images in order to keep track of your versions and not to overwrite each other as always being the latest**
 
 ```
 $ docker build -t <chosen-image-name>:<tag> .

@@ -153,3 +153,14 @@ webserver-image     v1                  ba094421bc0        31 seconds ago      2
 ```
 
 </details>
+
+
+# Dockerfile commands
+## COPY
+used to copy the contents from the directory containing the Dockerfile into the directory of the container
+```
+COPY <src> <dst>
+
+example
+COPY index.html /usr/share/nginx/html
+```

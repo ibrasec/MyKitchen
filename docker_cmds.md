@@ -157,10 +157,16 @@ webserver-image     v1                  ba094421bc0        31 seconds ago      2
 
 # Dockerfile commands
 ## COPY
-used to copy the contents from the directory containing the Dockerfile into the directory of the container
+used to copy the contents from the directory containing the Dockerfile into the directory of the container's image.
 ```
 COPY <src> <dst>
 
 example
 COPY index.html /usr/share/nginx/html
+```
+
+## RUN
+used to run commands within the image, as example installaing something or executing something else
+```
+RUN
 ```

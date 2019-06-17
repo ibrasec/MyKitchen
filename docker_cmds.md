@@ -129,6 +129,12 @@ COPY . /usr/share/nginx/html
 The build command executes each instruction within the Dockerfile.
 
 ```
+docker build <chosen-image-name> .
+```
+
+by default the tag for the newly created image will be **latest**, if we want to specify the version we can use the **-t** or **--tag** option as follows
+
+```
 $ docker build -t <chosen-image-name>:<tag> .
 or 
 $ docker build --tag <chosen-name>:<tag> .

@@ -40,6 +40,36 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 ```
 
+Use ps -a option to find all the installed container in your system even those that are not running
+
+```
+$ docker ps -a
+```
+
+## List installed images
+
+```
+$ docker images
+```
+
+## remove a docker image
+
+```
+$ docker rmi <image-id>
+```
+
+use --force option or -f options if you have to
+
+```
+$ docker rmi <image-id>-f
+```
+
+## remove a docker container
+
+```
+$ docker rm  <container-id>
+```
+
 ## Get more details about the running container
 ```
 $ docker inspect <container-id>|<container-name>

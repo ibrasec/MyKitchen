@@ -73,15 +73,15 @@ $ docker run -d redis:latest -p 2002:2222
 
 **Note**: by default the port will be mapped to the ip address 0.0.0.0, which means any active ip address running on the system will be have its mapped port open, to only restrict this port to be mapped to a certain ip address simple add the following 
 ```
-$ docker run -d <image-name>:latest -p <system-ip-address>:<system-port>:<container-port> 
+$ docker run -d -p <system-ip-address>:<system-port>:<container-port>  <image-name>:latest 
 
 example
-$ docker run -d redis:latest -p 127.0.0.1:2002:2222 
+$ docker run -d -p 127.0.0.1:2002:2222 redis:latest 
 ```
 ### Dynamic port mapping
 To run the container on dynamic port instead of fixed port
 ```
-$ docker run -d redis:latest -p 127.0.0.1:2002 --name DynamicPort 
+$ docker run -d  -p 127.0.0.1:2002 redis:latest --name DynamicPort 
 ```
 
 ## finding the Port mapping number running On a certain container

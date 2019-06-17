@@ -170,3 +170,12 @@ used to run commands within the image, as example installaing something or execu
 ```
 RUN
 ```
+
+## EXPOSE
+The installed image might have some application running and we might need to expose a certain port to be reachable, to do so we use the EXPOSE command as follows
+```
+EXPOSE <port-number>
+
+example
+EXPOSE 80
+```

@@ -126,6 +126,8 @@ FROM nginx:alpine
 COPY . /usr/share/nginx/html
 ```
 
+FROM means what is the <image name>:<tag> we want our container to have.
+
 The build command executes each instruction within the Dockerfile.
 
 ```

@@ -1,3 +1,8 @@
+# Basic Docker Commands
+<details>
+<summary> show/hide...
+</summary>
+  
 ## Search Docker Hub for images
 To find a certain docker image simply run the below commmand passing the image name
 ```
@@ -105,3 +110,29 @@ example:
 $ docker run -it ubuntu bash
 root@b123ujs123:/#
 ```
+
+</details>
+
+
+# Building docker image
+<details>
+<summary> show/hide...
+</summary>
+To build a docker image, you need a file that have instructions to follow for building, these instructinos are located inside a file called the **Dockerfile**, the Dockerfile looks like this:
+```
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+```
+The build command executes each instruction within the Dockerfile.
+```
+$ docker build -t <chosen-image-name>:<tag> .
+or 
+$ docker build --tag <chosen-name>:<tag> .
+```
+if you list the currently installed images, you will find the new image with its tag listed
+```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+webserver-image     v1                  ba094421bc0        31 seconds ago      20.5MB
+```
+</details>

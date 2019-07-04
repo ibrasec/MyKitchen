@@ -1,3 +1,8 @@
+# zone-transfere
+```
+dnsrecon -d almadar.ly -a
+```
+
 # theharvester
 To collect data from certain search engines
 ```

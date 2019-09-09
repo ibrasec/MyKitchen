@@ -1,6 +1,6 @@
 # zone-transfere
 ```
-dnsrecon -d almadar.ly -a
+dnsrecon -d example.com -a
 ```
 
 # theharvester
